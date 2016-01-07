@@ -111,7 +111,21 @@ describe Calculator do
      end
    end
 
-   describe '#stringify' do
-     
-   end
+   describe '#output' do
+     let(:d) {Calculator.new(1.5)} 
+      context 'stringify is passed to new calculator object'do
+          it 'output of any add is stringified' do
+            expect(d.output(d.add(1,2))).to eq("3")
+          end
+          it 'output of any subtract is stringified' do
+            expect(d.output(d.subtract(3,2))).to eq("1")
+          end
+          it 'output of any multiply is stringified' do
+            expect(d.output(d.multiply(1,2))).to eq("2")
+          end
+          it 'output of divide method is stringified' do
+            expect(d.output(d.divide(2,1))).to eq("2")
+          end
+      end
+    end
 end
