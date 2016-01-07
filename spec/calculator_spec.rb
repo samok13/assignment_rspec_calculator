@@ -86,7 +86,20 @@ describe Calculator do
      it 'properly determines square roots for positive numbers' do
        expect(c.sqrt(100)).to eq(10)
      end
-     #raises errors for negative inputs
-     #returns integers for round roots or 2-digit decimals for non-round roots
+     it 'raises errors for negative inputs' do
+        expect{c.sqrt(-100)}.to raise_error(ArgumentError)
+     end
+     it 'returns 2-digit decimals for non-round roots' do
+        expect(c.sqrt(20)).to eq(4.47)
+      end
    end
+    describe 'memory' do
+      it 'returns the object in memory' do
+        expect(c.memory = 100).to eq(c.instance_variable_get(:@memory))
+      end
+
+
+
+   end
+
 end
