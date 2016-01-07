@@ -13,6 +13,9 @@ describe Calculator do
     it 'adds float numbers properly' do
       expect(c.add(1.0,2.0)).to eq(3.0)
     end
+    it 'adds float and int' do
+      expect(c.add(1.1, 2)).to eq(3.1)
+    end
   end
 
   describe '#subtract' do
@@ -22,21 +25,68 @@ describe Calculator do
      it 'subtracts negative integers properly' do
       expect(c.subtract(-3,-2)).to eq(-1)
     end
-     it 'subtracts postive integers properly' do
+     it 'subtracts postive float properly' do
       expect(c.subtract(3.0,2.0)).to eq(1.0)
     end
-   end 
+    it 'subtracts float and int' do
+      expect(c.subtract(1.0, 2)).to eq(-1.0)
+    end
+   end
 
    describe '#multiply' do
-    it 'properly multiplies numbers' do
-      expect(c.multiply(1,2)).to eq(2)
+    it 'multiplies positive int numbers' do
+      expect(c.multiply(1, 2)).to eq(2)
+    end
+    it 'multiplies negative int numbers' do
+      expect(c.multiply(-1,-2)).to eq(2)
+    end
+    it 'multiplies float numbers' do
+      expect(c.multiply(-1.0, -2.0)).to eq(2.0)
+    end
+    it 'multiplies float and int' do
+      expect(c.multiply(1.0, 2)).to eq(2.0)
     end
    end
 
    describe '#divide' do
-      it 'properly divides numbers' do
+      it 'raises ArgumentError on 0 for 2nd argument' do
         expect {c.divide(3,0)}.to raise_error(ArgumentError)
       end
-   end 
 
+      it 'returns int if no remainder' do
+        expect(c.divide(10,2)).to eq(5)
+      end
+
+      it 'return float if remainder exists' do
+        expect(c.divide(11,2)).to eq(5.5)
+      end
+
+      it 'divides negative numbers correctly' do
+        expect(c.divide(10,-2)).to eq(-5)
+      end
+
+   end
+
+   describe '#pow' do
+     it 'properly raises number to power' do
+       expect(c.pow(10,2)).to eq(100)
+     end
+
+     it 'properly accounts for negative powers' do
+       expect(c.pow(10,-2)).to eq(0.01)
+     end
+
+     it 'properly accounts for decimal powers' do
+       expect(c.pow(100, 0.5)).to eq(10.0)
+     end
+   end
+
+   describe '#sqrt' do
+     #properly determines square roots for positive numbers
+     it 'properly determines square roots for positive numbers' do
+       expect(c.sqrt(100)).to eq(10)
+     end
+     #raises errors for negative inputs
+     #returns integers for round roots or 2-digit decimals for non-round roots
+   end
 end
