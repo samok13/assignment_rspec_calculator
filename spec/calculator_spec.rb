@@ -1,7 +1,7 @@
 require 'calculator.rb'
 
 describe Calculator do
-  let(:c) {Calculator.new}
+  let(:c) { Calculator.new }
 
   describe '#add' do
     it 'adds postive integer numbers properly' do
@@ -82,7 +82,6 @@ describe Calculator do
    end
 
    describe '#sqrt' do
-     #properly determines square roots for positive numbers
      it 'properly determines square roots for positive numbers' do
        expect(c.sqrt(100)).to eq(10)
      end
@@ -93,13 +92,26 @@ describe Calculator do
         expect(c.sqrt(20)).to eq(4.47)
       end
    end
-    describe 'memory' do
-      it 'returns the object in memory' do
-        expect(c.memory = 100).to eq(c.instance_variable_get(:@memory))
+
+   describe '#memory=()' do
+      it 'stores an object in memory' do
+        expect(c.memory=(100)).to eq(c.instance_variable_get(:@memory))
       end
-
-
-
    end
 
+   describe '#memory' do
+     it 'returns the object in memory' do
+       c.memory=(9999)
+       expect(c.memory).to eq(9999)
+     end
+     it 'clears memory when returned' do
+       c.memory=(123456)
+       c.memory
+       expect(c.instance_variable_get(:@memory)).to eq(nil)
+     end
+   end
+
+   describe '#stringify' do
+     
+   end
 end

@@ -31,9 +31,11 @@ class Calculator
     @memory = nil
     return mem
   end
+  #sets @memory instance to value of mem
   def memory=(mem)
     @memory = mem
   end
+
   def output(result)
     @stringify ? result.to_s : result
   end
